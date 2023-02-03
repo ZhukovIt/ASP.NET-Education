@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartyInvites", "PartyInvites\PartyInvites.csproj", "{73F06B5F-A5DE-44B5-BD75-5118A488790E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstProject (.NET 2.0)", "FirstProject (.NET 2.0)\FirstProject (.NET 2.0).csproj", "{9B9AC912-6102-455B-8833-6965931EDFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstProject (.NET 2.1)", "FirstProject (.NET 2.0)\FirstProject (.NET 2.1).csproj", "{9B9AC912-6102-455B-8833-6965931EDFB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

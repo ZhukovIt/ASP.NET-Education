@@ -1,0 +1,37 @@
+﻿@model PartyInvites.Models.GuestResponse
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>FormGoParty</title>
+    </head>
+    <body>
+        <form asp-action="FormGoParty" method="post">
+            <p>
+                <label asp-for="Name">Ваше имя:</label>
+                <input asp-for="Name" />
+            </p>
+            <p>
+                <label asp-for="Email">Ваш e-mail:</label>
+                <input asp-for="Email" />
+            </p>
+            <p>
+                <label asp-for="Phone">Ваш номер телефона:</label>
+                <input asp-for="Phone" />
+            </p>
+            <p>
+                <label asp-for="WillAttend">Вы придёте на вечеринку?</label>
+                <select asp-for="WillAttend">
+                    <option value="">Выберите вариант ответа</option>
+                    <option value="true">Да, я пойду на вечеринку!</option>
+                    <option value="false">К сожалению, я не смогу пойти на вечеринку!</option>
+                </select>
+            </p>
+            <button type="submit">Отправить ответ</button>
+        </form>
+    </body>
+</html>

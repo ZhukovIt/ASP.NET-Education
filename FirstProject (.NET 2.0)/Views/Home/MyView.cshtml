@@ -10,7 +10,13 @@
     </head>
     <body>
         <div>
-            Hello World (from the view)
+            @ViewBag.Greeting, дорогой друг!
+            <p>
+                Приглашаю тебя на интересную вечеринку!<br /><br />
+                П.с.: можешь взять с собой друзей!)
+            </p>
+            <br />
+            <a asp-action="FormGoParty">Перейти к заполнению формы заявки на вечеринку...</a>
         </div>
     </body>
 </html>
