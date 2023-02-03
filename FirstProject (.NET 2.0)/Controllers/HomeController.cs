@@ -39,8 +39,15 @@ namespace PartyInvites.Controllers
         [HttpPost]
         public ViewResult FormGoParty(GuestResponse guestResponse)
         {
-            Repository.AddGuestResponse(guestResponse);
-            return View("Thanks", guestResponse);
+            if (ModelState.IsValid)
+            {
+                Repository.AddGuestResponse(guestResponse);
+                return View("Thanks", guestResponse);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ViewResult ListResponses()

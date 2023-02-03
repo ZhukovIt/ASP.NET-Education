@@ -8,9 +8,11 @@
     <head>
         <meta name="viewport" content="width=device-width" />
         <title>FormGoParty</title>
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
         <form asp-action="FormGoParty" method="post">
+            <div asp-validation-summary="All"></div>
             <p>
                 <label asp-for="Name">Ваше имя:</label>
                 <input asp-for="Name" />
