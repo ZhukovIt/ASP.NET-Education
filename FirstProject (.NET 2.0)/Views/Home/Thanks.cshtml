@@ -1,0 +1,26 @@
+﻿@model PartyInvites.Models.GuestResponse
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Thanks</title>
+    </head>
+    <body>
+        <p>
+            <h1>Спасибо Вам, @Model.Name!</h1>
+            @if (Model.WillAttend == true)
+            {
+                @:Это очень хорошо, что Вы придёте. Напитки будут самыми свежими!
+            }
+            else
+            {
+                @:Очень жаль, что Вы не сможете придти на вечеринку, но спасибо Вам, что написали об этом.
+            }
+        </p>
+        <p>Кликните <a asp-action="ListResponses">здесь</a>, чтобы посмотреть кто пойдёт на вечеринку.</p>
+    </body>
+</html>

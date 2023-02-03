@@ -38,7 +38,8 @@ namespace PartyInvites.Controllers
         [HttpPost]
         public ViewResult FormGoParty(GuestResponse guestResponse)
         {
-            return View();
+            Repository.AddGuestResponse(guestResponse);
+            return View("Thanks", guestResponse);
         }
     }
 }
