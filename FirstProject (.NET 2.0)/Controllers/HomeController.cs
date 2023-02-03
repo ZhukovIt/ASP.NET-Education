@@ -1,6 +1,7 @@
 ﻿using System;
 using PartyInvites.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace PartyInvites.Controllers
 {
@@ -40,6 +41,11 @@ namespace PartyInvites.Controllers
         {
             Repository.AddGuestResponse(guestResponse);
             return View("Thanks", guestResponse);
+        }
+
+        public ViewResult ListResponses()
+        {
+            return View(Repository.GuestResponses.Where(gR => gR.WillAttend == true));
         }
     }
 }
