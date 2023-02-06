@@ -8,8 +8,9 @@
     <head>
         <meta name="viewport" content="width=device-width" />
         <title>Thanks</title>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
     </head>
-    <body>
+    <body class="text-center">
         <p>
             <h1>Спасибо Вам, @Model.Name!</h1>
             @if (Model.WillAttend == true)
@@ -21,6 +22,6 @@
                 @:Очень жаль, что Вы не сможете придти на вечеринку, но спасибо Вам, что написали об этом.
             }
         </p>
-        <p>Кликните <a asp-action="ListResponses">здесь</a>, чтобы посмотреть кто пойдёт на вечеринку.</p>
+        <p>Кликните <a class="nav-link" asp-action="ListResponses">здесь</a>, чтобы посмотреть кто пойдёт на вечеринку.</p>
     </body>
 </html>
