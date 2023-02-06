@@ -9,31 +9,39 @@
         <meta name="viewport" content="width=device-width" />
         <title>FormGoParty</title>
         <link rel="stylesheet" href="/css/styles.css" />
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
     </head>
     <body>
-        <form asp-action="FormGoParty" method="post">
-            <div asp-validation-summary="All"></div>
-            <p>
-                <label asp-for="Name">Ваше имя:</label>
-                <input asp-for="Name" />
-            </p>
-            <p>
-                <label asp-for="Email">Ваш e-mail:</label>
-                <input asp-for="Email" />
-            </p>
-            <p>
-                <label asp-for="Phone">Ваш номер телефона:</label>
-                <input asp-for="Phone" />
-            </p>
-            <p>
-                <label asp-for="WillAttend">Вы придёте на вечеринку?</label>
-                <select asp-for="WillAttend">
-                    <option value="">Выберите вариант ответа</option>
-                    <option value="true">Да, я пойду на вечеринку!</option>
-                    <option value="false">К сожалению, я не смогу пойти на вечеринку!</option>
-                </select>
-            </p>
-            <button type="submit">Отправить ответ</button>
-        </form>
+        <div class="panel panel-success">
+            <div class="panel-heading text-center"><h4>Заявка на вечеринку</h4></div>
+            <div class="panel-body">
+                <form class="p-a-1" asp-action="FormGoParty" method="post">
+                    <div asp-validation-summary="All"></div>
+                    <div class="form-group">
+                        <label asp-for="Name">Ваше имя:</label>
+                        <input class="form-control" asp-for="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email">Ваш e-mail:</label>
+                        <input class="form-control" asp-for="Email" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Phone">Ваш номер телефона:</label>
+                        <input class="form-control" asp-for="Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WillAttend">Вы придёте на вечеринку?</label>
+                        <select class="form-control" asp-for="WillAttend">
+                            <option value="">Выберите вариант ответа</option>
+                            <option value="true">Да, я пойду на вечеринку!</option>
+                            <option value="false">К сожалению, я не смогу пойти на вечеринку!</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit">Отправить ответ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

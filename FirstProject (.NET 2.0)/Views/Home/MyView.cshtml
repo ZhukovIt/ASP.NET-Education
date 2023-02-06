@@ -7,16 +7,14 @@
     <head>
         <meta name="viewport" content="width=device-width" />
         <title>Index</title>
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
     </head>
     <body>
-        <div>
-            @ViewBag.Greeting, дорогой друг!
-            <p>
-                Приглашаю тебя на интересную вечеринку!<br /><br />
-                П.с.: можешь взять с собой друзей!)
-            </p>
-            <br />
-            <a asp-action="FormGoParty">Перейти к заполнению формы заявки на вечеринку...</a>
+        <div class="text-center">
+            <h3>@ViewBag.Greeting, дорогой друг!</h3>
+            <h4>Приглашаю тебя на интересную вечеринку!</h4>
+            <h6>П.с.: можешь взять с собой друзей!)</h6>
+            <a class="btn btn-primary" asp-action="FormGoParty">Перейти к заполнению формы заявки на вечеринку...</a>
         </div>
     </body>
 </html>
