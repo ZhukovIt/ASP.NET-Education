@@ -5,6 +5,7 @@
     ViewBag.Title = "Working with Visual Studio";
 }
 
+<h3>Products</h3>
 <table>
     <thead>
         <tr><td>Name</td><td>Price</td></tr>
@@ -14,7 +15,7 @@
         {
             <tr>
                 <td>@p.Name</td>
-                <td>@p.Price</td>
+                <td>@($"{p.Price:C2}")</td>
             </tr>
         }
     </tbody>
