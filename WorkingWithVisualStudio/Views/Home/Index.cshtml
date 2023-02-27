@@ -5,9 +5,9 @@
     ViewBag.Title = "Working with Visual Studio";
 }
 
-<h3>Products</h3>
+<h3 class="text-center">Товары</h3>
 <p>Request Time: @DateTime.Now.ToString("HH:mm:ss")</p>
-<table>
+<table class="table table-bordered table-striped">
     <thead>
         <tr><td>Name</td><td>Price</td></tr>
     </thead>
@@ -21,3 +21,8 @@
         }
     </tbody>
 </table>
+<div class="text-center">
+    <a class="btn btn-primary" asp-action="AddProduct">
+        Добавить новый товар
+    </a>
+</div>
