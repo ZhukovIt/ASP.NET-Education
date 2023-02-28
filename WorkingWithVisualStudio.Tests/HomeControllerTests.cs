@@ -10,13 +10,7 @@ namespace WorkingWithVisualStudio.Tests
     {
         class ModelCompleteFakeRepository : IRepository
         {
-            public IEnumerable<Product> Products { get; } = new Product[]
-            {
-                new Product { Name = "P1", Price = 275M },
-                new Product { Name = "P2", Price = 48.95M },
-                new Product { Name = "P3", Price = 19.50M },
-                new Product { Name = "P3", Price = 34.95M }
-            };
+            public IEnumerable<Product> Products { get; set; }
 
             public void AddProduct(Product p)
             {
@@ -24,41 +18,23 @@ namespace WorkingWithVisualStudio.Tests
             }
         }
 
-        [Fact]
-        public void IndexActionModelIsComplete()
+        [Theory]
+        [InlineData(275, 48.95, 19.50, 24.95)]
+        [InlineData(5, 48.95, 19.50, 24.95)]
+        public void IndexActionModelIsComplete(decimal first, decimal second, decimal third, decimal fourth)
         {
             // Организация
             HomeController controller = new HomeController();
-            controller.Repository = new ModelCompleteFakeRepository();
-            // Действие
-            IEnumerable<Product> model = (controller.Index() as ViewResult)?.ViewData.Model as IEnumerable<Product>;
-            // Утверждение
-            Assert.Equal(controller.Repository.Products, model,
-                Comparer.Get<Product>((p1, p2) => p1.Name == p2.Name && p1.Price == p2.Price));
-        }
-
-        class ModelCompleteFakeRepositoryPricesUnder50 : IRepository
-        {
-            public IEnumerable<Product> Products { get; } = new Product[]
+            controller.Repository = new ModelCompleteFakeRepository
             {
-                new Product { Name = "P1", Price = 5M },
-                new Product { Name = "P2", Price = 48.95M },
-                new Product { Name = "P3", Price = 19.50M },
-                new Product { Name = "P3", Price = 34.95M }
+                Products = new Product[]
+                {
+                    new Product { Name = "P1", Price = first },
+                    new Product { Name = "P2", Price = second },
+                    new Product { Name = "P3", Price = third },
+                    new Product { Name = "P4", Price = fourth }
+                }
             };
-
-            public void AddProduct(Product p)
-            {
-                // Метод ничего не делает, так как этого не требуется для теста
-            }
-        }
-
-        [Fact]
-        public void IndexActionModelIsCompletePricesUnder50()
-        {
-            // Организация
-            HomeController controller = new HomeController();
-            controller.Repository = new ModelCompleteFakeRepositoryPricesUnder50();
             // Действие
             IEnumerable<Product> model = (controller.Index() as ViewResult)?.ViewData.Model as IEnumerable<Product>;
             // Утверждение
