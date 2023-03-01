@@ -9,7 +9,18 @@ namespace Store.Controllers
         private IProductRepository m_repository;
         private int m_PageSize;
 
-        public int PageSize => m_PageSize;
+        public int PageSize
+        {
+            get
+            {
+                return m_PageSize;
+            }
+
+            set
+            {
+                m_PageSize = value;
+            }
+        }
 
         public ProductController(IProductRepository repository)
         {
