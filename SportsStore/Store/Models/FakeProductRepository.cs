@@ -7,9 +7,9 @@ namespace Store.Models
     {
         public IQueryable<Product> Products => new List<Product>
         {
-            new Product { Name = "Футбольный мяч", Price = 25 },
-            new Product { Name = "Доска для сёрфа", Price = 179 },
-            new Product { Name = "Кроссовки", Price = 95 }
+            new Product { Name = "Футбольный мяч", Price = 249 },
+            new Product { Name = "Доска для сёрфа", Price = 1499 },
+            new Product { Name = "Кроссовки", Price = 3499 }
         }.AsQueryable();
     }
 }
