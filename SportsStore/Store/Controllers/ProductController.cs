@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Store.Models;
 using System.Linq;
+using Store.Models.ViewModels;
 
 namespace Store.Controllers
 {
@@ -29,10 +30,20 @@ namespace Store.Controllers
         }
 
         public ViewResult List(int productPage = 1) =>
-            View(m_repository.Products
-                .OrderBy(p => p.ProductId)
-                .Skip((productPage - 1) * m_PageSize)
-                .Take(m_PageSize)
+            View(
+                new ProductsListViewModel
+                {
+                    Products = m_repository.Products
+                    .OrderBy(p => p.ProductId)
+                    .Skip((productPage - 1) * PageSize)
+                    .Take(PageSize),
+                    PagingInfo = new PagingInfo
+                    {
+                        CurrentPage = productPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = m_repository.Products.Count()
+                    }
+                }
             );
     }
 }
