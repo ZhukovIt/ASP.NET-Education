@@ -17,49 +17,68 @@ namespace SportsStore.Models {
             catch(System.Exception) { }
             if (!context.Products.Any()) {
                 context.Products.AddRange(
-                    new Product {
-                        Name = "Kayak", Description = "A boat for one person",
-                        Category = "Watersports", Price = 275
+                    new Product
+                    {
+                        Name = "Байдарка",
+                        Description = "Предназначена для одного человека",
+                        Category = "Водный спорт",
+                        Price = 9999
                     },
-                    new Product {
-                        Name = "Lifejacket",
-                        Description = "Protective and fashionable",
-                        Category = "Watersports", Price = 48.95m
+                    new Product
+                    {
+                        Name = "Спасательный жилет",
+                        Description = "Защищает в воде и стильно выглядит",
+                        Category = "Водный спорт",
+                        Price = 3499
                     },
-                    new Product {
-                        Name = "Soccer Ball",
-                        Description = "FIFA-approved size and weight",
-                        Category = "Soccer", Price = 19.50m
+                    new Product
+                    {
+                        Name = "Футбольный мяч",
+                        Description = "Такой же как в FIFA",
+                        Category = "Футбол",
+                        Price = 999
                     },
-                    new Product {
-                        Name = "Corner Flags",
-                        Description = "Give your playing field a professional touch",
-                        Category = "Soccer", Price = 34.95m
+                    new Product
+                    {
+                        Name = "Угловые флаги",
+                        Description = "Возьмите их с собой, чтобы сделать футбольное поле из обычного",
+                        Category = "Футбол",
+                        Price = 1999
                     },
-                    new Product {
-                        Name = "Stadium",
-                        Description = "Flat-packed 35,000-seat stadium",
-                        Category = "Soccer", Price = 79500
+                    new Product
+                    {
+                        Name = "Стадион",
+                        Description = "Вмещает в себе около 35_000 человек",
+                        Category = "Футбол",
+                        Price = 5599000
                     },
-                    new Product {
-                        Name = "Thinking Cap",
-                        Description = "Improve brain efficiency by 75%",
-                        Category = "Chess", Price = 16
+                    new Product
+                    {
+                        Name = "Думающая кепка",
+                        Description = "Повышает эффективность мозгового мышления на 75%",
+                        Category = "Шахматы",
+                        Price = 799
                     },
-                    new Product {
-                        Name = "Unsteady Chair",
-                        Description = "Secretly give your opponent a disadvantage",
-                        Category = "Chess", Price = 29.95m
+                    new Product
+                    {
+                        Name = "Шаткий стул",
+                        Description = "Ваш козырь: помогает дезориентировать оппонента",
+                        Category = "Шахматы",
+                        Price = 2499
                     },
-                    new Product {
-                        Name = "Human Chess Board",
-                        Description = "A fun game for the family",
-                        Category = "Chess", Price = 75
+                    new Product
+                    {
+                        Name = "Шахматная доска",
+                        Description = "Подарит Вам весёлую игру для всей семьи",
+                        Category = "Шахматы",
+                        Price = 3499
                     },
-                    new Product {
-                        Name = "Bling-Bling King",
-                        Description = "Gold-plated, diamond-studded King",
-                        Category = "Chess", Price = 1200
+                    new Product
+                    {
+                        Name = "Королевские побрякушки",
+                        Description = "Позолоченные и с бриллиантами. Поможет дополнить Ваш королевский образ",
+                        Category = "Шахматы",
+                        Price = 99999
                     }
                 );
                 context.SaveChanges();
