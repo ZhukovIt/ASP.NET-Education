@@ -8,19 +8,22 @@ using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Tests {
 
-    public class ProductControllerTests {
+    public class ProductControllerTests 
+    {
+        private Product[] m_Products = new Product[] 
+        {
+            new Product {ProductID = 1, Name = "P1", Category = "Cat1"},
+            new Product {ProductID = 2, Name = "P2", Category = "Cat2"},
+            new Product {ProductID = 3, Name = "P3", Category = "Cat1"},
+            new Product {ProductID = 4, Name = "P4", Category = "Cat2"},
+            new Product {ProductID = 5, Name = "P5", Category = "Cat3"}
+        };
 
         [Fact]
         public void Can_Paginate() {
             // Arrange
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns((new Product[] {
-                new Product {ProductID = 1, Name = "P1"},
-                new Product {ProductID = 2, Name = "P2"},
-                new Product {ProductID = 3, Name = "P3"},
-                new Product {ProductID = 4, Name = "P4"},
-                new Product {ProductID = 5, Name = "P5"}
-            }).AsQueryable<Product>());
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
 
             ProductController controller = new ProductController(mock.Object);
             controller.PageSize = 3;
@@ -42,13 +45,7 @@ namespace SportsStore.Tests {
 
             // Arrange
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Products).Returns((new Product[] {
-                new Product {ProductID = 1, Name = "P1"},
-                new Product {ProductID = 2, Name = "P2"},
-                new Product {ProductID = 3, Name = "P3"},
-                new Product {ProductID = 4, Name = "P4"},
-                new Product {ProductID = 5, Name = "P5"}
-            }).AsQueryable<Product>());
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
 
             // Arrange
             ProductController controller =
@@ -66,5 +63,25 @@ namespace SportsStore.Tests {
             Assert.Equal(2, pageInfo.TotalPages);
         }
 
+
+        [Fact]
+        public void Can_Filter_Products()
+        {
+            // Организация - создание имитированного хранилища
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
+
+            // Организация - создание контроллера и установка размера страницы в три элемента
+            ProductController controller = new ProductController(mock.Object) { PageSize = 3 };
+
+            // Действие
+            Product[] result = (controller.List("Cat2", 1).ViewData.Model as ProductsListViewModel)
+                .Products.ToArray();
+
+            // Утверждение
+            Assert.Equal(2, result.Length);
+            Assert.True(result[0].Name == "P2" && result[0].Category == "Cat2");
+            Assert.True(result[1].Name == "P4" && result[1].Category == "Cat2");
+        }
     }
 }
