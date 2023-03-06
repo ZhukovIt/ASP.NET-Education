@@ -5,12 +5,14 @@ using SportsStore.Controllers;
 using SportsStore.Models;
 using Xunit;
 using SportsStore.Models.ViewModels;
+using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SportsStore.Tests {
 
-    public class ProductControllerTests 
+    public class ProductControllerTests
     {
-        private Product[] m_Products = new Product[] 
+        private Product[] m_Products = new Product[]
         {
             new Product {ProductID = 1, Name = "P1", Category = "Cat1"},
             new Product {ProductID = 2, Name = "P2", Category = "Cat2"},
@@ -82,6 +84,27 @@ namespace SportsStore.Tests {
             Assert.Equal(2, result.Length);
             Assert.True(result[0].Name == "P2" && result[0].Category == "Cat2");
             Assert.True(result[1].Name == "P4" && result[1].Category == "Cat2");
+        }
+
+        [Fact]
+        public void GenerateCategorySpecificProductCount()
+        {
+            // Организация
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
+            ProductController target = new ProductController(mock.Object) { PageSize = 3 };
+            Func<ViewResult, ProductsListViewModel> GetModel = result =>
+                result?.ViewData?.Model as ProductsListViewModel;
+            // Действие
+            int? res1 = GetModel(target.List("Cat1"))?.PagingInfo.TotalItems;
+            int? res2 = GetModel(target.List("Cat2"))?.PagingInfo.TotalItems;
+            int? res3 = GetModel(target.List("Cat3"))?.PagingInfo.TotalItems;
+            int? resAll = GetModel(target.List(null))?.PagingInfo.TotalItems;
+            // Утверждение
+            Assert.Equal(2, res1);
+            Assert.Equal(2, res2);
+            Assert.Equal(1, res3);
+            Assert.Equal(5, resAll);
         }
     }
 }
