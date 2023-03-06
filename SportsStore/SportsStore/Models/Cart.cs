@@ -36,12 +36,12 @@ namespace SportsStore.Models
         public virtual void Clear() => lineCollection.Clear();
 
         public virtual IEnumerable<CartLine> Lines => lineCollection;
+    }
 
-        public sealed class CartLine
-        {
-            public int CartLineID { get; set; }
-            public Product Product { get; set; }
-            public int Quantity { get; set; }
-        }
+    public sealed class CartLine
+    {
+        public int CartLineID { get; set; }
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
     }
 }
