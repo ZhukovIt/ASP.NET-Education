@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Routing;
 using Moq;
 using SportsStore.Components;
 using SportsStore.Models;
@@ -35,6 +37,28 @@ namespace SportsStore.Tests
                     "Сливы",
                     "Яблоки"
                 }, results));
+        }
+
+        [Fact]
+        public void IndicatesSelectedCategory()
+        {
+            // Организация
+            string categoryToSelect = "Яблоки";
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
+            NavigationMenuViewComponent target = new NavigationMenuViewComponent(mock.Object);
+            target.ViewComponentContext = new ViewComponentContext
+            {
+                ViewContext = new ViewContext
+                {
+                    RouteData = new RouteData()
+                }
+            };
+            target.RouteData.Values["category"] = categoryToSelect;
+            // Действие
+            string result = (string)(target.Invoke() as ViewViewComponentResult).ViewData["SelectedCategory"];
+            // Утверждение
+            Assert.Equal(categoryToSelect, result);
         }
     }
 }
