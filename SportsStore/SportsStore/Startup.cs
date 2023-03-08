@@ -35,6 +35,7 @@ namespace SportsStore {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
             routes.MapRoute(
