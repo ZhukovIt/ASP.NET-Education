@@ -1,0 +1,41 @@
+﻿@model Order
+
+<h2>Оформление заказа и оплата</h2>
+<p>Пожалуйста, введите необходимые данные и мы сразу же отправим Ваш заказ!</p>
+<form asp-action="Checkout" method="post">
+    <h3>Публичные данные</h3>
+    <div class="form-group">
+        <label>Имя:</label><input asp-for="Name" class="form-control" />
+    </div>
+    <h3>Адрес</h3>
+    <div class="form-group">
+        <label>Строка 1:</label><input asp-for="Line1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Строка 2:</label><input asp-for="Line2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Строка 3:</label><input asp-for="Line3" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Страна:</label><input asp-for="Country" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Регион:</label><input asp-for="Region" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Город:</label><input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Индекс:</label><input asp-for="Zip" class="form-control" />
+    </div>
+    <h3>Настройки</h3>
+    <div class="custom-checkbox">
+        <label>
+            <input asp-for="GiftWrap" /> Товары нужно будет упаковать
+        </label>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Завершить оформление заказа" />
+    </div>
+</form>
