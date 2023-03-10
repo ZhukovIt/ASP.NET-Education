@@ -12,6 +12,9 @@ namespace SportsStore.Models
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
 
+        [BindNever]
+        public bool Shipped { get; set; }
+
         [Required(ErrorMessage = "Пожалуйста, введите Ваше имя")]
         public string Name { get; set; }
 
