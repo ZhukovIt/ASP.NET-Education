@@ -10,11 +10,7 @@ namespace SportsStore.Models {
         public static void EnsurePopulated(IApplicationBuilder app) {
             ApplicationDbContext context = app.ApplicationServices
                 .GetRequiredService<ApplicationDbContext>();
-            try
-            {
-                context.Database.Migrate();
-            }
-            catch(System.Exception) { }
+            context.Database.Migrate();
             if (!context.Products.Any()) {
                 context.Products.AddRange(
                     new Product
