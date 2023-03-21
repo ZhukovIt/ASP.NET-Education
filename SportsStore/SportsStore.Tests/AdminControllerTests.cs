@@ -18,6 +18,38 @@ namespace SportsStore.Tests
         };
 
         [Fact]
+        public void CanEditProduct()
+        {
+            // Организация - создание имитированного хранилища
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
+            // Организация - создание контроллера
+            AdminController target = new AdminController(mock.Object);
+            // Действие
+            Product p1 = GetViewModel<Product>(target.Edit(1));
+            Product p2 = GetViewModel<Product>(target.Edit(2));
+            Product p3 = GetViewModel<Product>(target.Edit(3));
+            // Утверждение
+            Assert.Equal(1, p1.ProductID);
+            Assert.Equal(2, p2.ProductID);
+            Assert.Equal(3, p3.ProductID);
+        }
+
+        [Fact]
+        public void CannotEditNonexistentProduct()
+        {
+            // Организация - создание имитированного хранилища
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(m_Products.AsQueryable());
+            // Организация - создание контроллера
+            AdminController target = new AdminController(mock.Object);
+            // Действие
+            Product result = GetViewModel<Product>(target.Edit(4));
+            // Утверждение
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void IndexContainsAllProducts()
         {
             // Организация - создание имитированного хранилища
