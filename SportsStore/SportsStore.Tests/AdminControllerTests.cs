@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -17,6 +18,27 @@ namespace SportsStore.Tests
             new Product { ProductID = 2, Name = "P2" },
             new Product { ProductID = 3, Name = "P3" }
         };
+
+        [Fact]
+        public void CanDeleteValidProducts()
+        {
+            // Организация - создание объекта Product
+            Product secondProduct = new Product { ProductID = 2, Name = "Test" };
+            // Организация - клонирование Products и изменение 2 товара
+            Product[] products = new Product[3];
+            m_Products.CopyTo(products, 0);
+            products[1] = secondProduct;
+            // Организация - создание имитированного хранилища
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            mock.Setup(m => m.Products).Returns(products.AsQueryable());
+            // Организация - создание контроллера
+            AdminController target = new AdminController(mock.Object);
+            // Действие - удаление товара
+            target.Delete(secondProduct.ProductID);
+            // Утверждение - проверка того, что был вызван метод удаления
+            // в хранилище с корректным объектом Product
+            mock.Verify(m => m.DeleteProduct(secondProduct.ProductID));
+        }
 
         [Fact]
         public void CanSaveValidChanges()
