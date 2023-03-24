@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportsStore.Controllers
 {
@@ -15,9 +16,11 @@ namespace SportsStore.Controllers
             m_Cart = cartService;
         }
 
+        [Authorize]
         public ViewResult List() =>
             View(m_repository.Orders.Where(o => !o.Shipped));
 
+        [Authorize]
         [HttpPost]
         public IActionResult MarkShipped(int orderID)
         {
